@@ -1,0 +1,53 @@
+1. Four implementations
+A. Frame implements ActionListener
+public class ConverterA extends JFrame
+        implements ActionListener {
+
+    JButton button = new JButton("Convert");
+
+    public ConverterA() {
+        button.addActionListener(this);
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        convert();
+    }
+
+    void convert() {
+        System.out.println("Conversion performed");
+    }
+}
+
+
+B. Named inner class
+class ConvertHandler implements ActionListener {
+    public void actionPerformed(ActionEvent e) {
+        convert();
+    }
+}
+
+button.addActionListener(new ConvertHandler())
+The ConvertHandler clas is declared inside the outer converter class and can access its instance members.
+
+C. Anonymous inner class
+button.addActionListener(new ActionListener() {
+    public void actionPerformed(ActionEvent e) {
+        convert();
+    }
+});
+
+
+D. Lambda expression
+ActionListener action = e -> convert();
+
+button.addActionListener(action);
+amount.addActionListener(action);
+
+
+Compare the styles
+
+Style	                            Readability	    Reusability         Ease of maintenance
+Frame implements ActionListener	    Moderate	    Limited	            Moderate
+Named inner class	                Good	        Good	            Good
+Anonymous inner class	            Good            for short handlers	Limited	Moderate
+Lambda expression	                Very good 	    Good when shared	Very good
