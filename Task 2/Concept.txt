@@ -1,0 +1,26 @@
+1. What happens when the department changes?
+
+The department selection generates an ItemEvent. The ItemListener reads the selected department and refreshes the doctor list with doctors belonging to that department.
+
+2. Why is validation necessary?
+
+Validation prevents incomplete or incorrect appointment details from being submitted. It also improves user experience by displaying clear error messages.
+
+3. How can appointment booking be prevented during an existing booking operation?
+
+Maintain a booking-in-progress flag. When booking starts, set it to true. Reset it when the operation completes. If the user tries to close the window during booking, display a confirmation dialog.
+
+4. What is the advantage of using a Map for doctor information?
+
+A Map<String, List<Doctor>> stores doctors department-wise. It avoids repeatedly accessing the database whenever the department changes.
+Alternative concept – Fetch doctors from database each time
+If doctors are fetched from the database for every department change:
+- Each change requires a database query.
+- Network and database delays can slow the interface.
+- Memory usage for cached doctor data is reduced.
+
+Time and Space Complexity :
+
+Approach	    Time per department change	                                            Memory
+Preloaded Map	O(1) average department lookup, plus O(dᵢ) to display its doctors	    O(d + m)
+Database query	Database/network latency plus O(dᵢ) to retrieve and display results	    O(dᵢ) temporary data

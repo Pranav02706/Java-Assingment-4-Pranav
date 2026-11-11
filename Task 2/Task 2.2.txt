@@ -1,0 +1,20 @@
+Component hierarchy
+
+JFrame – Appointment Desk
+│
+├── JPanel – Patient Details
+│   ├── JLabel – Patient ID
+│   └── JTextField – Patient ID
+│
+├── JPanel – Appointment Details
+│   ├── JLabel – Department
+│   ├── JComboBox – Department
+│   ├── JLabel – Doctor
+│   ├── JComboBox – Doctor
+│   ├── JLabel – Time Slot
+│   └── JComboBox – Time Slot
+│
+├── JPanel – Buttons
+│   └── JButton – Book Appointment
+│
+└── JLabel – Status Message

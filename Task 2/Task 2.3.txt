@@ -1,0 +1,47 @@
+Handler pseudocode
+
+A. Refresh doctor list when department changes
+
+START
+
+Read selected department
+
+Clear doctor list
+
+Find doctors belonging to selected department
+
+FOR each doctor
+    Add doctor to doctor list
+END FOR
+
+Update doctor selection
+
+STOP
+
+B. Validate and book appointment
+
+START
+
+Read patient ID
+Read department
+Read doctor
+Read time slot
+
+IF patient ID is empty
+    Display error
+ELSE IF doctor is not selected
+    Display error
+ELSE IF time slot is not selected
+    Display error
+ELSE
+    Check appointment availability
+
+    IF slot is available
+        Book appointment
+        Display confirmation
+    ELSE
+        Display slot unavailable
+    END IF
+END IF
+
+STOP

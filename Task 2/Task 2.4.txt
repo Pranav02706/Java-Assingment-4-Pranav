@@ -1,0 +1,31 @@
+Event sequence
+
+Create JFrame
+     |
+Initialize components
+     |
+Register listeners
+     |
+Display window
+     |
+User selects department
+     |
+Refresh doctor list
+     |
+User selects doctor and time
+     |
+User clicks Book
+     |
+Validate appointment
+     |
+Display confirmation/error
+     |
+User closes window
+     |
+windowClosing()
+     |
+Ask for confirmation if booking is in progress
+     |
+windowClosed()
+     |
+Dispose window

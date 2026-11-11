@@ -1,0 +1,9 @@
+Model the events:
+
+Event source	        Event object	    Listener	        Action
+Patient ID field	    ActionEvent	        ActionListener	    Read patient ID
+Department list	        ItemEvent	        ItemListener	    Refresh doctor list
+Doctor list	            ItemEvent	        ItemListener	    Select doctor
+Time slot list	        ItemEvent	        ItemListener	    Select appointment time
+Book button	            ActionEvent	        ActionListener	    Validate and book appointment
+Window close	        WindowEvent	        WindowListener	    Confirm before closing
