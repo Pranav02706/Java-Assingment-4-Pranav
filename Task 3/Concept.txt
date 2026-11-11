@@ -1,0 +1,40 @@
+1. Layout managers
+
+Component	        Layout manager	                    Reason
+Main Frame	        BorderLayout	        Divides the window into regions
+Search panel	    FlowLayout	            Arranges search controls in a row
+Bottom panel	    FlowLayout	            Arranges navigation buttons horizontally
+South panel	        BorderLayout	        Separates navigation buttons and status
+Results area	    BorderLayout.CENTER	    Expands when the window is resized
+
+2. Nested container structure
+
+Frame – BorderLayout
+│
+├── North – Title Label
+├── Search Panel – FlowLayout
+│   ├── Search Label
+│   ├── TextField
+│   ├── Choice
+│   └── Search Button
+│
+├── Center – TextArea
+│
+└── South Panel – BorderLayout
+    ├── Center – Button Panel (FlowLayout)
+    │   ├── Prev
+    │   ├── Next
+    │   └── Reserve
+    └── South – Status Label
+
+
+3. Why are layout managers important?
+Layout managers automatically position and resize components. They help maintain a consistent
+interface across different screen sizes without manually specifying component coordinates.
+
+4. Test resizing behaviour
+Test the program at these three window sizes:
+Test	    Window size	    Expected behaviour
+1	        400 × 300	    Results area is smaller
+2	        600 × 400	    Normal layout
+3	        900 × 600	    Results area expands
