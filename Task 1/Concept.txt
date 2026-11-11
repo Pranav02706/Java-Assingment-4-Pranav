@@ -1,0 +1,31 @@
+Task 1.1 – Diagnose the design
+Identify at least five design deficiencies.
+Deficiency	                        Explanation
+Poor separation of logic	        GUI and payment operations are written in one listener
+Incorrect String comparison	        == should be replaced with .equals()
+No input validation	                Empty or invalid amounts can cause errors
+Database operation on GUI thread	The window may freeze during database operations
+Thread.sleep()	                    Blocks the event-dispatch thread
+No user feedback	                System.out.println() does not properly notify the user
+Receipt button not implemented	    Users cannot view payment details
+SQL injection risk	                SQL is constructed by concatenating user input
+Resource management	                Database connections and statements are not closed
+Unhandled exceptions	            Database and interruption exceptions are not handled
+
+Task 1.2 – Repair the design
+How does the redesigned program separate the GUI and business logic?
+
+The program uses two classes:
+- FeeWindow: collects user input and displays messages.
+- FeeService: validates the input and performs payment-related processing.
+The GUI communicates with the service class through the pay() method.
+
+Task 1.3 – Design defence
+Why is the redesigned program easier to test and maintain?
+The redesigned program separates the user interface from payment logic. The FeeService class can be tested independently without opening the GUI. Changes to payment validation do not affect the window design. Separate event handlers also make the application easier to understand, debug and maintain.
+
+Complexity :
+
+Approach	                    Event dispatch	            Space
+One listener with if-else	    Up to O(k) comparisons	    O(1) listener
+Separate listeners	            O(1) command dispatch	    O(k) listeners
