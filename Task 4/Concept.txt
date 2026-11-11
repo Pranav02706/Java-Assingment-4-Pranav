@@ -1,0 +1,32 @@
+1. Locate the defect
+Why is the click never handled?
+The method is written as:
+public void mouseclicked(MouseEvent e)
+
+Java is case-sensitive. The correct method is:
+public void mouseClicked(MouseEvent e)
+
+The incorrect method does not override the required MouseAdapter method.
+Why does the label never change?
+Since the event handler is not correctly overridden, the click event is not processed. Therefore, the counter is not incremented and the label is not updated.
+
+2. Construct a failing interaction
+Click several positions on the drawing area and then minimise and restore the window.
+If getGraphics() is used to draw dots directly, the dots may disappear because the window is repainted without the application knowing how to redraw them.
+
+3. Repair the program
+The corrected program uses:
+- ArrayList<Point> to store clicked positions.
+- mouseClicked() to record a click.
+- repaint() to request redrawing.
+- paint() to redraw every stored point.
+
+4. Prevent recurrence
+The @Override annotation tells the compiler that a method must override a superclass method or implement an interface method.
+If the method is incorrectly named mouseclicked(), the compiler reports an error because it does not override a method from MouseAdapter.
+
+Time and Space Complexity :
+
+Approach	            Repainting time	                        Storage
+ArrayList of points	        O(n)	                            O(n) points
+BufferedImage	        O(width × height) to copy the image	    O(width × height) pixels
