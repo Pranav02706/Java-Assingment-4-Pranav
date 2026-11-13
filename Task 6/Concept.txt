@@ -1,0 +1,87 @@
+Stage 1 – Interpret the problem
+1. Identify the users.
+- Students: Register for campus events.
+- Cultural committee: View, filter and export registrations.
+- Administrator: Manage the registration database.
+2. Identify the screens.
+1. Registration screen.
+2. Registration records screen.
+3. Event filter screen.
+4. CSV export option.
+5. Error and confirmation dialogs.
+3. Identify the data.
+- Student name.
+- Register number.
+- Email address.
+- Event name.
+- Registration ID.
+- Registration date.
+4. State the testable requirements.
+- Students must enter all required fields.
+- Invalid email addresses must be rejected.
+- Duplicate registration must be prevented.
+- The committee must be able to view registrations.
+- The committee must be able to filter by event.
+- Registrations must be exportable as CSV.
+- Database loading must not freeze the GUI.
+
+Stage 2 – Propose the screen and event flow
+Screen flow:
+          Main Window
+               |
+       -----------------
+       |               |
+   Registration      View Records
+       |               |
+   Validate Data     JTable
+       |               |
+   Save to MySQL    Filter Event
+       |               |
+   Confirmation     Export CSV
+
+Stage 3 – Critical design decisions
+1. Where does input validation occur?
+
+Validation occurs in the EventService class before inserting data into MySQL.
+
+2. How is duplicate registration prevented?
+
+The database uses a composite unique constraint:
+UNIQUE (register_number, event_name)
+
+This prevents duplicate registrations even if two users attempt to register at nearly the same time.
+
+3. How is database access performed?
+
+JDBC is used with PreparedStatement to execute SQL operations securely.
+
+4. How is the GUI kept responsive?
+
+SwingWorker executes database operations in the background. The GUI updates when the task finishes.
+
+Stage 4 – Design the classes and handlers
+Class diagram:
+       EventRegistration
+       (Swing GUI Layer)
+                |
+                v
+          EventService
+        (Business Layer)
+                |
+                v
+          DBConnection
+         (JDBC Layer)
+                |
+                v
+             MySQL
+
+Stage 5 – Implementation and demonstration
+
+The program demonstrates:
+Test case	            Input	                    Expected result
+Normal registration	    Valid student details	    Registration successful
+Empty input	            Missing name	            Error message
+Invalid email	        abc123	                    Invalid email message
+Duplicate registration  Same register number    	Duplicate rejected
+Filter	                Technical Quiz	            Only matching records displayed
+Export	                Click Export CSV	        CSV file created
